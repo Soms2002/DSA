@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+struct Student {
+    int id;
+    string name;
+};
+
+int linearSearch(Student students[], int size, int key) {
+    for (int i = 0; i < size; i++) {
+        if (students[i].id == key) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    Student students[] = { {1, "Alice"}, {2, "Bob"}, {3, "Charlie"} };
+    int size = sizeof(students) / sizeof(students[0]);
+    int key = 2;
+    int result = linearSearch(students, size, key);
+    if (result != -1) {
+        cout << "Student found at index: " << result << " with name: " << students[result].name << endl;
+    } else {
+        cout << "Student not found." << endl;
+    }
+    return 0;
+}
