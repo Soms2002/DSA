@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> binarySearchMultiple(int arr[], int size, int target) {
+    vector<int> indices;
+    int left = 0, right = size - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == target) {
+            indices.push_back(mid);
+            // Check for duplicates on both sides
+            for (int i = mid - 1; i >= left && arr[i] == target; i--) indices.push_back(i);
+            for (int i = mid + 1; i <= right && arr[i] == target; i++) indices.push_back(i);
+            break;
+        }
+        if (arr[mid] < target) left = mid + 1;
+        else right = mid - 1;
+    }
+    return indices;
+}
+
+int main() {
+    int arr[] = {1, 2, 2, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int target = 2;
+    vector<int> results = binarySearchMultiple(arr, size, target);
+    cout << "Element found at indices: ";
+    for (int index : results) cout << index << " ";
+    cout << endl;
+    return 0;
+}
