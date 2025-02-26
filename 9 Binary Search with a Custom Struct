@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+struct Item {
+    int id;
+    string name;
+};
+
+int binarySearchItem(Item arr[], int size, int targetId) {
+    int left = 0, right = size - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid].id == targetId) return mid;
+        if (arr[mid].id < targetId) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    Item arr[] = {{1, "Apple"}, {2, "Banana"}, {3, "Cherry"}, {4, "Date"}, {5, "Fig"}};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int targetId = 3;
+    int result = binarySearchItem(arr, size, targetId);
+    cout << "Element found at index: " << result << endl;
+    return 0;
+}
