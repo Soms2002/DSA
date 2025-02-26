@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+int binarySearch(int arr[], int size, int target) {
+    int last = arr[size - 1];
+    arr[size - 1] = target; // Sentinel
+    int i = 0;
+    while (arr[i] != target) i++;
+    arr[size - 1] = last; // Restore last element
+    return (i < size - 1) ? i : -1;
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int target = 3;
+    int result = binarySearch(arr, size, target);
+    cout << "Element found at index: " << result << endl;
+    return 0;
+}
