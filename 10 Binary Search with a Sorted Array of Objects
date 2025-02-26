@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Product {
+public:
+    int id;
+    string name;
+
+    Product(int id, string name) : id(id), name(name) {}
+};
+
+int binarySearchProduct(Product arr[], int size, int targetId) {
+    int left = 0, right = size - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid].id == targetId) return mid;
+        if (arr[mid].id < targetId) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    Product arr[] = {Product(1, "Laptop"), Product(2, "Phone"), Product(3, "Tablet"), Product(4, "Monitor"), Product(5, "Keyboard")};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int targetId = 4;
+    int result = binarySearchProduct(arr, size, targetId);
+    cout << "Element found at index: " << result << endl;
+    return 0;
+}
